@@ -1,4 +1,4 @@
-package io.opensea.compose.presenter
+package io.opensea.jellyfish
 
 import androidx.compose.runtime.Stable
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +11,7 @@ public abstract class StatelessPresenter<
     in Event : Any,
     Output : Any,
     out UiModel,
-> : ComposePresenter<Props, Event, Output, UiModel> {
+> : JellyfishPresenter<Props, Event, Output, UiModel> {
 
   private val _outputs = MutableSharedFlow<Output>(extraBufferCapacity = 20)
 

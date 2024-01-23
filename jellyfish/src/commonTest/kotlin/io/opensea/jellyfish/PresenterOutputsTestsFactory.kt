@@ -1,12 +1,12 @@
-package io.opensea.compose.presenter
+package io.opensea.jellyfish
 
 import app.cash.turbine.test
 import io.kotest.core.spec.style.stringSpec
 import io.kotest.matchers.shouldBe
 
-internal fun <Presenter : ComposePresenter<Props, Event, Output, UiModel>> presenterOutputsTests(
-    presenterProvider: () -> Presenter,
-    emitOutput: Presenter.(Output) -> Unit,
+internal fun <Presenter : JellyfishPresenter<Props, Event, Output, UiModel>> presenterOutputsTests(
+  presenterProvider: () -> Presenter,
+  emitOutput: Presenter.(Output) -> Unit,
 ) = stringSpec {
   lateinit var presenter: Presenter
 

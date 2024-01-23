@@ -1,4 +1,4 @@
-package io.opensea.compose.presenter
+package io.opensea.jellyfish
 
 import kotlin.reflect.KProperty
 

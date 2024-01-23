@@ -1,4 +1,4 @@
-package io.opensea.compose.presenter
+package io.opensea.jellyfish
 
 import androidx.compose.runtime.Composable
 import io.kotest.core.spec.style.StringSpec

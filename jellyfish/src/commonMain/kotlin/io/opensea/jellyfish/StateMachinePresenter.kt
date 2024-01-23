@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalObjCRefinement::class)
 
-package io.opensea.compose.presenter
+package io.opensea.jellyfish
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,7 +25,7 @@ public abstract class StateMachinePresenter<
     in Event : Any,
     Output : Any,
     out UiModel,
-> : ComposePresenter<Props, Event, Output, UiModel> {
+> : JellyfishPresenter<Props, Event, Output, UiModel> {
 
   private val _outputs = MutableSharedFlow<Output>(extraBufferCapacity = 20)
 
@@ -110,14 +110,14 @@ public abstract class StateMachinePresenter<
 
 @Composable
 public fun <State : Any, Props : Any, Event : Any, Output : Any, UiModel> StateMachinePresenter<
-    State, Props, Event, Output, UiModel>
+        State, Props, Event, Output, UiModel>
     .testFromState(initialState: State?, props: Props, events: Flow<Event>): State {
   return internalState(initialState, props, events)
 }
 
 @Composable
 public fun <State : Any, Props : Any, Event : Any, Output : Any, UiModel> StateMachinePresenter<
-    State, Props, Event, Output, UiModel>
+        State, Props, Event, Output, UiModel>
     .testRender(initialState: State, props: Props, events: Flow<Event>): UiModel {
   return internalRender(initialState, props, events)
 }
