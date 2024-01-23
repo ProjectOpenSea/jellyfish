@@ -1,0 +1,22 @@
+[versions]
+kotlin = "1.9.10"
+kotlinxCoroutines = "1.7.3"
+org-jetbrains-kotlin-jvm = "1.9.0"
+jetbrainsCompose = "1.5.3"
+molecule = "1.2.1"
+turbine = "1.0.0"
+kotest = "5.7.2"
+
+[libraries]
+kotlinxCoroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+moleculeRuntime = { module = "app.cash.molecule:molecule-runtime", version.ref = "molecule" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-framework-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
+kotest-framework-datatest = { module = "io.kotest:kotest-framework-datatest", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+
+[plugins]
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "jetbrainsCompose" }
+kotest-multiplatform = { id = "io.kotest.multiplatform", version.ref = "kotest" }
