@@ -11,3 +11,6 @@ Heavily inspired by [Square's Workflow library](https://square.github.io/workflo
 
 ## Usage and Examples
 🚧🚧🚧🚧🚧🚧 under construction 🚧🚧🚧🚧🚧🚧
+
+## License
+Apache License Copyright 2023 Ozone Networks Inc.
