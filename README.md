@@ -113,6 +113,18 @@ class CounterPresenter : StateMachinePresenter<CounterState, Unit, CounterEvent,
 
 ```
 
+Finally, to use the presenter, simply call it's `invoke()` function:
+```kotlin
+@Composable fun CounterScreen() {
+  val presenter by remember { CounterPresenter() }
+  val uiModel = presenter()
+
+  when (uiModel) {
+   // draw your UI
+  }
+}
+```
+
 ## Nested presenters
 🚧🚧🚧🚧🚧🚧 under construction 🚧🚧🚧🚧🚧🚧
 
