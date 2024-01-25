@@ -14,3 +14,5 @@ Heavily inspired by [Square's Workflow library](https://square.github.io/workflo
 
 ## License
 Apache License Copyright 2023 Ozone Networks Inc.
+
+Portions of this software include code from [Jetbrains Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform)  which is licensed under the Apache License Version 2.0 and which is copyright 2020-2021 JetBrains s.r.o. and their respective authors and developers 
