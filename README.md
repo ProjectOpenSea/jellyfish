@@ -21,7 +21,7 @@ dependencies {
   implementation("com.github.ProjectOpenSea:jellyfish:0.1.0")
 }
 ```
-Since artifact distribution is through Jitpack for now, **Kotlin Multiplatform artifacts are not built.** To use Jellyfish in a KMP project, you'll need to **build the artifacts yourself.** Migrating to Maven is on the roadmap.
+Since artifact distribution is through Jitpack for now, **Kotlin Multiplatform iOS artifacts are not built.** To use Jellyfish in a iOS KMP project, you'll need to **build the artifacts yourself.** Migrating to Maven is on the roadmap.
 
 
 ## Usage and Examples
