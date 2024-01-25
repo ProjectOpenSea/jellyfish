@@ -23,8 +23,97 @@ dependencies {
 ```
 Since artifact distribution is through Jitpack for now, **Kotlin Multiplatform iOS artifacts are not built.** To use Jellyfish in a iOS KMP project, you'll need to **build the artifacts yourself.** Migrating to Maven is on the roadmap.
 
+## Example usage
+As a (sort of contrived) example, let's build a simple counter that fetches it's initial count from another source. First, let's define our states, their corresponding UI models, and events.
+```kotlin
+sealed class CounterUiModel
+data object LoadingUi : CounterUiModel()
+data class LoadedUi(val text: String) : CounterUiModel()
+data class ErrorUi(val message: String) : CounterUiModel()
 
-## Usage and Examples
+sealed class CounterState
+data object Loading : CounterState()
+data class Loaded(val count: Int) : CounterState()
+data object Error : CounterState()
+
+sealed class CounterEvent
+sealed class CounterLoadedEvent : CounterEvent()
+data object Increment : CounterLoadedEvent()
+sealed class CounterErrorEvent : CounterEvent()
+data object Retry : CounterErrorEvent()
+```
+
+And this is what our presenter would look like:
+```kotlin
+// note: this class doesn't use Props or Output, so we can set their types to Unit.
+class CounterPresenter : StateMachinePresenter<CounterState, Unit, CounterEvent, Unit, CounterUiModel>() {
+
+    // define the state we should initialize into
+    override fun initialState(props: Unit): CounterState = Loading
+
+    @Composable
+    override fun render(state: CounterState, props: Unit, events: Flow<CounterEvent>): CounterUiModel {
+        // map our state to UI models
+        return when (state) {
+            Loading -> LoadingUi
+            is Loaded -> LoadedUi(text = "Count: ${state.count}")
+            Error -> ErrorUi("Couldn't load initial count.")
+        }
+    }
+
+    @Composable
+    override fun state(
+        state: CounterState,
+        setState: (CounterState) -> Unit,
+        props: Unit,
+        events: Flow<CounterEvent>
+    ): CounterState {
+        when (state) {
+            Loading -> {
+                LaunchedEffect(Unit) {
+                    val initialCountResult = fetchCount() // example suspending call that returns a Result
+
+                    // we use the setState() function to update our state.
+                    initialCountResult.getOrNull()?.let { initialCount ->
+                        setState(Loaded(count = initialCount))
+                    } ?: setState(Error)
+                }
+            }
+            is Loaded -> {
+                // EventStateTransitions is a helper function that helps enforce we are only accepting the events we declare in this state.
+                EventStateTransitions<_, CounterLoadedEvent>(
+                    state = state,
+                    setState = setState,
+                    props = props,
+                    events = events,
+                ) { event, _ ->
+                    // this lambda defines what state we should transition to when receiving an event.
+                    when (event) {
+                        Increment -> Loaded(count = count+1)
+                    }
+                }
+            }
+            Error -> {
+                EventStateTransitions<_, CounterErrorEvent>(
+                    state = state,
+                    setState = setState,
+                    props = props,
+                    events = events,
+                ) { event, _ ->
+                    when (event) {
+                        Retry -> Loading
+                    }
+                }
+            }
+        }
+
+        return state
+    }
+}
+
+```
+
+## Nested presenters
 🚧🚧🚧🚧🚧🚧 under construction 🚧🚧🚧🚧🚧🚧
 
 ## License
