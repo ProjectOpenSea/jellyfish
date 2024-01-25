@@ -9,6 +9,21 @@ Heavily inspired by [Square's Workflow library](https://square.github.io/workflo
 
  Jellyfish is production ready and has been used in the OpenSea Android and iOS apps (via Kotlin Multiplatform) for over a year.
 
+## Setup
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        maven { url = URI("https://jitpack.io") }
+    }
+}
+
+dependencies {
+  implementation("com.github.ProjectOpenSea:jellyfish:0.1.0")
+}
+```
+Since artifact distribution is through Jitpack for now, **Kotlin Multiplatform artifacts are not built.** To use Jellyfish in a KMP project, you'll need to **build the artifacts yourself.** Migrating to Maven is on the roadmap.
+
+
 ## Usage and Examples
 🚧🚧🚧🚧🚧🚧 under construction 🚧🚧🚧🚧🚧🚧
 
