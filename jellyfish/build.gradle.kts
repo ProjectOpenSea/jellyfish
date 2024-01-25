@@ -5,7 +5,11 @@ plugins {
     kotlin("multiplatform")
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotest.multiplatform)
+    `maven-publish`
 }
+
+group = "com.github.ProjectOpenSea"
+version = "0.1.0"
 
 kotlin {
     explicitApi = ExplicitApiMode.Strict
